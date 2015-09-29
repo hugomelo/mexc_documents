@@ -12,6 +12,6 @@
  * @link          https://github.com/museudecienciasunicamp/mexc_documents.git Mexc Documents public repository
  */
 
-class MexcDocumentsAppController extends MexcAppController
+class MexcDocumentsAppController extends RedeAppController
 {
 }
