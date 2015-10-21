@@ -13,37 +13,21 @@
  */
 
 // @todo Search box
-echo $this->Bl->sbox(array(), array('size' => array('M' => 12, 'g' => -1), 'type' => 'cloud'));
-	
-	echo $this->Bl->h2Dry('documentos');
-	
-	echo $this->element('pagination', array('top' => true));
-	
-	echo $this->Bl->sboxContainer(array(), array('size' => array('M' => 12), 'type' => 'column_container'));
-	
-		$total_documents = count($documents);
-		foreach ($documents as $cont => $document)
-		{
-			echo $this->Jodel->insertModule('MexcDocuments.MexcDocument', array('column_full'), $document);
-			
-			if (($cont+1) % 3 == 0)
-			{
-				echo $this->Bl->floatBreak();
-				if ($cont+1 < $total_documents)
-					echo  $this->Bl->box(
-							array(), 
-							array('size' => array('M' => 12, 'g' => -1), 'type' => 'inner_column'),
-							$this->Bl->hr()
-						);
-			}
+echo $this->element('header-index', array('title' => 'Documentos', 'slug'=>'documents'));
+
+echo $this->Bl->srow(array('class' => 'pages documents'));
+	echo $this->Bl->sdiv(array('class' => "posts-list"), array());
+		foreach ($mexc_documents as $document) {
+			echo $this->Bl->sdiv(array('class' => "col-xs-12 col-sm-6 col-md-4"), array());
+				echo $this->Bl->sdiv(array('class' => "post new"), array());
+					echo $this->Jodel->insertModule('MexcNews.MexcNew', array('preview', 'box'), $document);
+				echo $this->Bl->ediv();
+			echo $this->Bl->ediv();
 		}
-		
-		echo $this->Bl->floatBreak();
-		echo $this->Bl->br();
-	echo $this->Bl->eboxContainer();
-	
-	echo $this->element('pagination');
-
-echo $this->Bl->ebox();
-
-echo $this->Bl->br();
+		if (empty($mexc_documents)) {
+			echo $this->Bl->sdiv(array('class' => "col-xs-12 col-sm-6 col-md-4"), array());
+				echo $this->Bl->h5Dry("Não há documentos a exibir ainda");
+			echo $this->Bl->ediv();
+		}
+	echo $this->Bl->ediv();
+echo $this->Bl->erow();

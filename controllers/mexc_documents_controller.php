@@ -41,8 +41,8 @@ class MexcDocumentsController extends MexcDocumentsAppController
 	function index()
 	{
 		$conditions = $this->MexcSpace->getConditionsForSpaceFiltering($this->currentSpace);
-		$documents = $this->paginate('MexcDocument', $conditions);
-		$this->set(compact('documents'));
+		$mexc_documents = $this->paginate('MexcDocument', $conditions);
+		$this->set(compact('mexc_documents'));
 	}
 	
 	function read($mexc_document_id = null)
