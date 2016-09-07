@@ -27,6 +27,6 @@ echo $this->Bl->sbox(array('class' => 'more_content'), array('type' => 'sky', 's
 	echo $this->Bl->anchor(
 		array('class' => 'non_visitable'), 
 		array('url' => array('plugin' => 'mexc_documents', 'controller' => 'mexc_documents', 'action' => 'index')),
-		'Outros documentos do Museu'
+		'Outros documentos da Rede'
 	);
 echo $this->Bl->ebox();

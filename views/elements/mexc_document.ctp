@@ -23,6 +23,42 @@ switch ($type[0])
 		}
 	break;
 	
+	case 'list':
+		foreach ($data as $one_data)
+			echo $this->Jodel->insertModule('MexcDocuments.MexcDocument', array($type[1]), $one_data);
+	break;
+	
+	case 'preview':
+		switch ($type[1])
+		{
+			case 'box':
+			case 'unified_search':
+				if (isset($data['MexcDocument'])) {
+					$item = $data['MexcDocument'];
+					$url = array('plugin' => 'mexc_documents', 'controller' => 'mexc_documents', 'action' => 'read', $item['id']);
+				}
+				else {
+					$item = $data['SblSearchItem'];
+					$url = array('plugin' => 'mexc_documents', 'controller' => 'mexc_documents', 'action' => 'read', $item['foreign_id']);
+				}
+
+
+				echo $this->Bl->h6(array('class' => 'post-type'), array(), 'Biblioteca');
+				if (!empty($data['MexcSpace']['FactSite'][0]['name'])) {
+					echo $this->Bl->anchor(array(), array('url' => '/programas/'.$data['MexcSpace']['id']),
+						$this->Bl->div(array('class' => 'project'), array(), $data['MexcSpace']['FactSite'][0]['name']));
+				}
+				echo $this->Bl->div(array('class' => 'post-date'), array(), date('d/m/Y',strtotime($item['date'])));
+				echo $this->Bl->anchor(array(), array('url' => $url),
+					$this->Bl->h5(array('class' => 'title'), array(), $item['name']));
+				echo $this->Bl->anchor(array(), array('url' => $url),
+					$this->Bl->div(array('class' => 'post-body'), array(), $item['summary']));
+				echo $this->Bl->div(array('class' => 'post-footer-hidder'));
+				if (isset($data['SfilStoredFile']['id']))
+					echo $this->Jodel->insertModule('PieFile.PieFile', array('full', 'mexc_document'), $data);
+			break;
+		}
+		break;
 	case 'column':
 		if ($type[1] == 'related_content')
 		{
