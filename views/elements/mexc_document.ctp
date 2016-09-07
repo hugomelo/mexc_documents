@@ -39,23 +39,37 @@ switch ($type[0])
 				}
 				else {
 					$item = $data['SblSearchItem'];
+					$item['name'] = $item['title'];
 					$url = array('plugin' => 'mexc_documents', 'controller' => 'mexc_documents', 'action' => 'read', $item['foreign_id']);
+
+					$mexcDocument = ClassRegistry::init('MexcDocuments.MexcDocument');
+					$document = $mexcDocument->find('first', array(
+						'contain' => array('SfilStoredFile'),
+						'conditions' => array('MexcDocument.id' => $item['foreign_id'])
+					));
 				}
 
-
 				echo $this->Bl->h6(array('class' => 'post-type'), array(), 'Biblioteca');
+
 				if (!empty($data['MexcSpace']['FactSite'][0]['name'])) {
 					echo $this->Bl->anchor(array(), array('url' => '/programas/'.$data['MexcSpace']['id']),
 						$this->Bl->div(array('class' => 'project'), array(), $data['MexcSpace']['FactSite'][0]['name']));
 				}
+
 				echo $this->Bl->div(array('class' => 'post-date'), array(), date('d/m/Y',strtotime($item['date'])));
 				echo $this->Bl->anchor(array(), array('url' => $url),
 					$this->Bl->h5(array('class' => 'title'), array(), $item['name']));
+
 				echo $this->Bl->anchor(array(), array('url' => $url),
-					$this->Bl->div(array('class' => 'post-body'), array(), $item['summary']));
+					$this->Bl->div(array('class' => 'post-body'), array(), substr($item['summary'],0, 150)));
+
 				echo $this->Bl->div(array('class' => 'post-footer-hidder'));
-				if (isset($data['SfilStoredFile']['id']))
+
+				if (isset($item['file_id'])) {
 					echo $this->Jodel->insertModule('PieFile.PieFile', array('full', 'mexc_document'), $data);
+				} else {
+					echo $this->Jodel->insertModule('PieFile.PieFile', array('full', 'mexc_document'), $document);
+				}
 			break;
 		}
 		break;

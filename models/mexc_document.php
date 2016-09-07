@@ -30,6 +30,9 @@ class MexcDocument extends MexcDocumentsAppModel
 				'content_stream_id' => 'document'
 			)
 		),
+		'UnifiedSearch.Searcheable' => array(
+			'contain' => array('MexcSpace')
+		),
 		'MexcRelated.MexcHasRelatedContent' => array(
 			'MexcDocuments.MexcDocument',
 			'MexcGalleries.MexcGallery',
@@ -93,6 +96,7 @@ class MexcDocument extends MexcDocumentsAppModel
 		$data = array();
 		$data[$this->alias]['publishing_status'] = 'draft';
 		$data[$this->alias]['document_date'] = date('Y-m-d');
+		$data[$this->alias]['date'] = date('Y-m-d H:i:s');
 		
 		return $this->save($data, false);
 	}
@@ -125,5 +129,11 @@ class MexcDocument extends MexcDocumentsAppModel
 		);
 		
 		return $dashdata;
+	}
+
+	function beforeSave() {
+		if (isset($this->data[$this->alias]['mexc_space_id']) && $this->data[$this->alias]['mexc_space_id'] == '')
+			$this->data[$this->alias]['mexc_space_id'] = null;
+		return true;
 	}
 }

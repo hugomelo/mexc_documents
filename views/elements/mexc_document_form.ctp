@@ -35,29 +35,21 @@ echo $this->Buro->sform(array(), array(
 		)
 	);
 	
-	// Related event
-	echo $this->Buro->input(
-		array(),
-		array(
-			'type' => 'mexc_event'
-		)
-	);
-	
 	// Display Level
-	echo $this->Buro->input(
-		array(),
-		array(
-			'fieldName' => 'display_level',
-			'type' => 'select',
-			'label' => __d('mexc_document', 'form - display level label', true),
-			'instructions' => __d('mexc_document', 'form - display level instructions', true),
-			'options' => array('options' => array (
-				'general' => 'Geral',
-				'fact_site' => 'Só no espaço',
-				'private' => 'Privado'
-			))
-		)
-	);
+	//echo $this->Buro->input(
+		//array(),
+		//array(
+			//'fieldName' => 'display_level',
+			//'type' => 'select',
+			//'label' => __d('mexc_document', 'form - display level label', true),
+			//'instructions' => __d('mexc_document', 'form - display level instructions', true),
+			//'options' => array('options' => array (
+				//'general' => 'Geral',
+				//'fact_site' => 'Só no espaço',
+				//'private' => 'Privado'
+			//))
+		//)
+	//);
 	
 	// Document name
 	echo $this->Buro->input(
@@ -78,17 +70,6 @@ echo $this->Buro->sform(array(), array(
 			'type' => 'text',
 			'label' => __d('mexc_document', 'form - author label', true),
 			'instructions' => __d('mexc_document', 'form - author instructions', true)
-		)
-	);
-	
-	// Type
-	echo $this->Buro->input(
-		array(),
-		array(
-			'fieldName' => 'document_type',
-			'type' => 'text',
-			'label' => __d('mexc_document', 'form - document_type label', true),
-			'instructions' => __d('mexc_document', 'form - document_type instructions', true)
 		)
 	);
 	
@@ -116,75 +97,6 @@ echo $this->Buro->sform(array(), array(
 		)
 	);
 
-	// Some data
-	echo $this->Buro->sinput(
-		array(), 
-		array(
-			'type' => 'super_field', 
-			'label' => __d('mexc_document', 'form - random data super_field label', true), 
-			'instructions' => __d('mexc_document', 'form - random data super_field instructions', true)
-		)
-	);
-	
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'MexcDocument.report_data.0.label',
-				'label' => __d('mexc_document', 'form - label_1 label', true), 
-				'instructions' => __d('mexc_document', 'form - label_1 instructions', true)
-			)
-		);
-		
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'MexcDocument.report_data.0.content',
-				'type' => 'textarea',
-				'label' => __d('mexc_document', 'form - content_1 label', true), 
-				'instructions' => __d('mexc_document', 'form - content_1 instructions', true)
-			)
-		);
-		
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'MexcDocument.report_data.1.label',
-				'label' => __d('mexc_document', 'form - label_2 label', true), 
-				'instructions' => __d('mexc_document', 'form - label_2 instructions', true)
-			)
-		);
-		
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'MexcDocument.report_data.1.content',
-				'type' => 'textarea',
-				'label' => __d('mexc_document', 'form - content_2 label', true), 
-				'instructions' => __d('mexc_document', 'form - content_2 instructions', true)
-			)
-		);
-		
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'MexcDocument.report_data.2.label',
-				'label' => __d('mexc_document', 'form - label_3 label', true), 
-				'instructions' => __d('mexc_document', 'form - label_3 instructions', true)
-			)
-		);
-		
-		echo $this->Buro->input(
-			array(),
-			array(
-				'fieldName' => 'MexcDocument.report_data.2.content',
-				'type' => 'textarea',
-				'label' => __d('mexc_document', 'form - content_3 label', true), 
-				'instructions' => __d('mexc_document', 'form - content_3 instructions', true)
-			)
-		);
-		
-	echo $this->Buro->einput();
-	
 	echo $this->Buro->input(
 		array(),
 		array(
