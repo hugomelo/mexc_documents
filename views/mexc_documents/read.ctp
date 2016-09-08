@@ -31,7 +31,7 @@ echo $this->Bl->sbox(array(), array('size' => array('M' => 9, 'g' => -1), 'type'
 			if (isset($document['Tag'])) {
 				foreach($document['Tag'] as $tag) {
 					echo $this->Bl->anchor(array(), array('url' => '/tag/'.$tag['keyname']), $tag['name']);
-					if ($tag != end($document['MexcDocument'])) echo ", ";
+					if ($tag != end($document['Tag'])) echo ", ";
 				}
 				echo $this->Bl->hr(array('class' => 'meta'));
 			}
@@ -45,7 +45,8 @@ echo $this->Bl->sbox(array(), array('size' => array('M' => 9, 'g' => -1), 'type'
 					echo $this->Jodel->insertModule('PieFile.PieFile', array('full', 'mexc_document'), $document);
 			echo $this->Bl->ediv();
 
-			echo "<h2>Sobre o documento</h2>";
+			if (!empty($document['MexcDocument']['content_stream_id']))
+				echo "<h2>Sobre o documento</h2>";
 			echo $this->Bl->srow(array('class' => ''));
 				echo $this->Jodel->insertModule('ContentStream.CsContentStream', array('full', 'mexc_document'), $document['MexcDocument']['content_stream_id']);
 			echo $this->Bl->erow();
